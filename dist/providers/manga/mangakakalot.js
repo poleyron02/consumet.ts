@@ -144,7 +144,7 @@ class MangaKakalot extends models_1.MangaParser {
             try {
                 const { data } = await this.client.get(`${this.baseUrl}/search/story/${query.replace(/ /g, '_')}`);
                 const $ = (0, cheerio_1.load)(data);
-                const results = $('div.daily-update > div > div')
+                const results = $('div.panel-search-story > div')
                     .map((i, el) => {
                         var _a;
                         return ({
