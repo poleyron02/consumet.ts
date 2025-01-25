@@ -6,7 +6,7 @@ class MangaKakalot extends models_1.MangaParser {
     constructor() {
         super(...arguments);
         this.name = 'MangaKakalot';
-        this.baseUrl = 'https://mangakakalot.com';
+        this.baseUrl = 'https://manganato.com';
         this.logo = 'https://techbigs.com/uploads/2022/1/mangakakalot-apkoptimized.jpg';
         this.classPath = 'MANGA.MangaKakalot';
         this.fetchMangaInfo = async (mangaId) => {
@@ -54,14 +54,14 @@ class MangaKakalot extends models_1.MangaParser {
                         .get();
                     mangaInfo.chapters = $('div.chapter-list > div.row')
                         .map((i, el) => {
-                        var _a;
-                        return ({
-                            id: (_a = $(el).find('span > a').attr('href')) === null || _a === void 0 ? void 0 : _a.split('chapter/')[1],
-                            title: $(el).find('span > a').text(),
-                            views: parseInt($(el).find('span:nth-child(2)').text().replace(/,/g, '').trim()),
-                            releasedDate: $(el).find('span:nth-child(3)').attr('title'),
-                        });
-                    })
+                            var _a;
+                            return ({
+                                id: (_a = $(el).find('span > a').attr('href')) === null || _a === void 0 ? void 0 : _a.split('chapter/')[1],
+                                title: $(el).find('span > a').text(),
+                                views: parseInt($(el).find('span:nth-child(2)').text().replace(/,/g, '').trim()),
+                                releasedDate: $(el).find('span:nth-child(3)').attr('title'),
+                            });
+                        })
                         .get();
                 }
                 else {
@@ -95,14 +95,14 @@ class MangaKakalot extends models_1.MangaParser {
                         .get();
                     mangaInfo.chapters = $('div.container-main-left > div.panel-story-chapter-list > ul > li')
                         .map((i, el) => {
-                        var _a;
-                        return ({
-                            id: (_a = $(el).find('a').attr('href')) === null || _a === void 0 ? void 0 : _a.split(`${mangaId}/`)[1],
-                            title: $(el).find('a').text(),
-                            views: parseInt($(el).find('span.chapter-view.text-nowrap').text().replace(/,/g, '').trim()),
-                            releasedDate: $(el).find('span.chapter-time.text-nowrap').attr('title'),
-                        });
-                    })
+                            var _a;
+                            return ({
+                                id: (_a = $(el).find('a').attr('href')) === null || _a === void 0 ? void 0 : _a.split(`${mangaId}/`)[1],
+                                title: $(el).find('a').text(),
+                                views: parseInt($(el).find('span.chapter-view.text-nowrap').text().replace(/,/g, '').trim()),
+                                releasedDate: $(el).find('span.chapter-time.text-nowrap').attr('title'),
+                            });
+                        })
                         .get();
                 }
                 return mangaInfo;
@@ -120,15 +120,15 @@ class MangaKakalot extends models_1.MangaParser {
                 const $ = (0, cheerio_1.load)(data);
                 const pages = $('div.container-chapter-reader > img')
                     .map((i, el) => {
-                    var _a;
-                    return ({
-                        img: $(el).attr('src'),
-                        page: i,
-                        title: (_a = $(el)
-                            .attr('alt')) === null || _a === void 0 ? void 0 : _a.replace(/(- Mangakakalot.com)|(- MangaNato.com)/g, ' ').trim(),
-                        headerForImage: { Referer: this.baseUrl },
-                    });
-                })
+                        var _a;
+                        return ({
+                            img: $(el).attr('src'),
+                            page: i,
+                            title: (_a = $(el)
+                                .attr('alt')) === null || _a === void 0 ? void 0 : _a.replace(/(- Mangakakalot.com)|(- MangaNato.com)/g, ' ').trim(),
+                            headerForImage: { Referer: this.baseUrl },
+                        });
+                    })
                     .get();
                 return pages;
             }
@@ -146,14 +146,14 @@ class MangaKakalot extends models_1.MangaParser {
                 const $ = (0, cheerio_1.load)(data);
                 const results = $('div.daily-update > div > div')
                     .map((i, el) => {
-                    var _a;
-                    return ({
-                        id: (_a = $(el).find('div > h3 > a').attr('href')) === null || _a === void 0 ? void 0 : _a.split('/')[3],
-                        title: $(el).find('div > h3 > a').text(),
-                        image: $(el).find('a > img').attr('src'),
-                        headerForImage: { Referer: this.baseUrl },
-                    });
-                })
+                        var _a;
+                        return ({
+                            id: (_a = $(el).find('div > h3 > a').attr('href')) === null || _a === void 0 ? void 0 : _a.split('/')[3],
+                            title: $(el).find('div > h3 > a').text(),
+                            image: $(el).find('a > img').attr('src'),
+                            headerForImage: { Referer: this.baseUrl },
+                        });
+                    })
                     .get();
                 return {
                     results: results,
